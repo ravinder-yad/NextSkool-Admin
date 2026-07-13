@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AdminLayout from './layouts/AdminLayout';
 
 import Dashboard from './pages/Dashboard/Dashboard';
+import DashboardSettings from './pages/Dashboard/DashboardSettings';
 import PlacementDashboard from './pages/Placements/PlacementDashboard/PlacementDashboard';
 import Companies from './pages/Placements/Companies/Companies';
 import PlacementDrives from './pages/Placements/PlacementDrives/PlacementDrives';
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
+            <Route path="dashboard/settings" element={<DashboardSettings />} />
             
             {/* Placement Routes */}
             <Route path="placements" element={<Navigate to="/placements/dashboard" replace />} />
