@@ -2,6 +2,10 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AdminLayout from './layouts/AdminLayout';
 
+import AllCourses from './pages/Courses/AllCourses';
+import AddCourse from './pages/Courses/AddCourse';
+import AllCategories from './pages/Categories/AllCategories';
+import AddCategory from './pages/Categories/AddCategory';
 import Dashboard from './pages/Dashboard/Dashboard';
 import DashboardSettings from './pages/Dashboard/DashboardSettings';
 import PlacementDashboard from './pages/Placements/PlacementDashboard/PlacementDashboard';
@@ -37,6 +41,20 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="dashboard/settings" element={<DashboardSettings />} />
             
+            
+            {/* Course Management Routes */}
+            <Route path="courses" element={<AllCourses />} />
+            <Route path="courses/add" element={<AddCourse />} />
+            <Route path="courses/edit/:id" element={<AddCourse />} />
+            <Route path="courses/draft" element={<AllCourses />} />
+            <Route path="courses/featured" element={<AllCourses />} />
+
+            
+            {/* Category Management Routes */}
+            <Route path="categories" element={<AllCategories />} />
+            <Route path="categories/add" element={<AddCategory />} />
+            <Route path="categories/edit/:id" element={<AddCategory />} />
+
             {/* Placement Routes */}
             <Route path="placements" element={<Navigate to="/placements/dashboard" replace />} />
             <Route path="placements/dashboard" element={<PlacementDashboard />} />
