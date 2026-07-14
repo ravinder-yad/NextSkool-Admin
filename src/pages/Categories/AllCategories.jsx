@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi2';
+import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash, HiOutlineSquares2X2 } from 'react-icons/hi2';
 
 const AllCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -38,16 +38,22 @@ const AllCategories = () => {
 
   return (
     <div className="max-w-[1600px] mx-auto w-full">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">All Categories</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Manage course categories for your platform.</p>
+      {/* Top Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-6 border-b border-gray-100 dark:border-white/5">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 flex items-center justify-center rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+            <HiOutlineSquares2X2 className="text-2xl" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-extrabold text-gray-800 dark:text-white tracking-tight">All Categories</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage course categories, icons, and visibility.</p>
+          </div>
         </div>
         <Link 
           to="/categories/add" 
-          className="mt-4 sm:mt-0 flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-md transition-colors"
+          className="mt-4 sm:mt-0 flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-[0_4px_14px_0_rgb(79,70,229,0.39)] font-medium transition-all"
         >
-          <HiOutlinePlus className="text-xl" /> Add Category
+          <HiOutlinePlus className="text-lg" /> Add Category
         </Link>
       </div>
 
