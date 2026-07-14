@@ -20,50 +20,50 @@ const AnalyticsCharts = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
       {/* Revenue Chart */}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-6">Revenue Overview</h3>
+      <div className="bg-white dark:bg-[#23273D] dark:shadow-none p-6 rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border-none dark:border-transparent">
+        <h3 className="text-lg font-bold text-gray-800 dark:text-white dark:text-gray-50 mb-6">Revenue Overview</h3>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data.revenueData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#2563EB" stopOpacity={0.1}/>
-                  <stop offset="95%" stopColor="#2563EB" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#6366F1" stopOpacity={0.1}/>
+                  <stop offset="95%" stopColor="#6366F1" stopOpacity={0}/>
                 </linearGradient>
                 <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10B981" stopOpacity={0.1}/>
-                  <stop offset="95%" stopColor="#10B981" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#F97316" stopOpacity={0.1}/>
+                  <stop offset="95%" stopColor="#F97316" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#88888833" />
               <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#6B7280', fontSize: 12}} dy={10} />
               <YAxis axisLine={false} tickLine={false} tick={{fill: '#6B7280', fontSize: 12}} tickFormatter={(value) => `${value / 1000}k`} />
               <Tooltip 
-                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                cursor={{ stroke: '#E5E7EB', strokeWidth: 1, strokeDasharray: '4 4' }}
+                contentStyle={{ borderRadius: '12px', border: '1px solid #88888833', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', backgroundColor: 'rgba(35, 39, 61, 0.9)', color: '#fff' }}
+                cursor={{ stroke: '#88888833', strokeWidth: 1, strokeDasharray: '4 4' }}
               />
               <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px' }} />
-              <Area type="monotone" dataKey="revenue" name="Revenue" stroke="#2563EB" strokeWidth={3} fillOpacity={1} fill="url(#colorRevenue)" />
-              <Area type="monotone" dataKey="profit" name="Profit" stroke="#10B981" strokeWidth={3} fillOpacity={1} fill="url(#colorProfit)" />
+              <Area type="monotone" dataKey="revenue" name="Revenue" stroke="#6366F1" strokeWidth={3} fillOpacity={1} fill="url(#colorRevenue)" />
+              <Area type="monotone" dataKey="profit" name="Profit" stroke="#F97316" strokeWidth={3} fillOpacity={1} fill="url(#colorProfit)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>
       </div>
 
       {/* Enrollments Chart */}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-        <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-6">Course Enrollments</h3>
+      <div className="bg-white dark:bg-[#23273D] dark:shadow-none p-6 rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border-none dark:border-transparent">
+        <h3 className="text-lg font-bold text-gray-800 dark:text-white dark:text-gray-50 mb-6">Course Enrollments</h3>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data.enrollmentData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#88888833" />
               <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#6B7280', fontSize: 12}} dy={10} />
               <YAxis axisLine={false} tickLine={false} tick={{fill: '#6B7280', fontSize: 12}} />
               <Tooltip 
-                cursor={{ fill: '#F3F4F6' }}
-                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                cursor={{ fill: '#88888811' }}
+                contentStyle={{ borderRadius: '12px', border: '1px solid #88888833', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', backgroundColor: 'rgba(35, 39, 61, 0.9)', color: '#fff' }}
               />
-              <Bar dataKey="students" name="Students" fill="#6366F1" radius={[6, 6, 0, 0]} barSize={40} />
+              <Bar dataKey="students" name="Students" fill="#8B5CF6" radius={[6, 6, 0, 0]} barSize={40} />
             </BarChart>
           </ResponsiveContainer>
         </div>

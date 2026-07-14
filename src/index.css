@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @custom-variant dark (&:is(.dark *));
 @theme {
-  --color-primary: #2563EB;
-  --color-primary-light: #EFF6FF;
+  --color-primary: #535CE8;
+  --color-primary-light: #EEF2FF;
   --color-background: #FFFFFF;
   --color-text-main: #111827;
   --color-secondary: #6B7280;
@@ -41,3 +41,4 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.dark body { background-color: #1A1D2F; }

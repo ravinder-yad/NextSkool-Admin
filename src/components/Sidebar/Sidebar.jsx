@@ -164,22 +164,22 @@ const SidebarItem = ({ item, isCollapsed, activePath }) => {
     : activePath === item.path;
 
   if (item.type === 'divider') {
-    return <div className="h-px bg-border my-2 mx-4" />;
+    return <div className="h-px bg-indigo-400/30 my-2 mx-4" />;
   }
 
   const navItemClass = `
-    flex items-center justify-between px-3 py-2 mx-3 rounded-xl cursor-pointer transition-all duration-200
+    flex items-center justify-between px-4 py-3 mx-4 rounded-2xl cursor-pointer transition-all duration-200
     ${isActive 
-      ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-400 font-semibold' 
-      : 'text-secondary hover:bg-gray-50 dark:hover:bg-gray-800/50 hover:text-text-main dark:hover:text-gray-200 font-medium'
+      ? 'bg-white text-indigo-600 shadow-md dark:bg-[#23273D] dark:text-white font-bold' 
+      : 'text-indigo-100 hover:bg-white/10 hover:text-white font-medium'
     }
   `;
 
   const renderContent = () => (
     <>
-      <div className="flex items-center gap-3 truncate">
-        <span className="text-xl shrink-0">{item.icon}</span>
-        {!isCollapsed && <span className="text-sm whitespace-nowrap">{item.name}</span>}
+      <div className="flex items-center gap-4 truncate">
+        <span className="text-[22px] shrink-0">{item.icon}</span>
+        {!isCollapsed && <span className="text-[15px] whitespace-nowrap">{item.name}</span>}
       </div>
       {!isCollapsed && hasChildren && (
         <motion.div
@@ -194,7 +194,7 @@ const SidebarItem = ({ item, isCollapsed, activePath }) => {
 
   if (hasChildren) {
     return (
-      <div className="mb-1">
+      <div className="mb-2">
         <div className={navItemClass} onClick={() => setIsOpen(!isOpen)}>
           {renderContent()}
         </div>
@@ -206,16 +206,16 @@ const SidebarItem = ({ item, isCollapsed, activePath }) => {
               exit={{ height: 0, opacity: 0 }}
               className="overflow-hidden"
             >
-              <div className="ml-9 mr-3 mt-1 pl-3 border-l border-border dark:border-gray-700 space-y-1">
+              <div className="ml-11 mr-4 mt-2 pl-4 border-l-2 border-indigo-400/30 space-y-2">
                 {item.children.map((child) => (
                   <NavLink
                     key={child.name}
                     to={child.path}
                     className={({ isActive: childActive }) =>
-                      `block px-3 py-2 text-sm rounded-lg transition-colors ${
+                      `block px-4 py-2.5 text-[14px] rounded-xl transition-colors ${
                         childActive
-                          ? 'text-primary font-medium bg-primary-light dark:bg-primary/20'
-                          : 'text-secondary hover:text-text-main dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
+                          ? 'text-white font-bold bg-white/20 dark:bg-[#23273D] shadow-sm'
+                          : 'text-indigo-200 hover:text-white hover:bg-white/10 dark:hover:bg-[#23273D]'
                       }`
                     }
                   >
@@ -231,7 +231,7 @@ const SidebarItem = ({ item, isCollapsed, activePath }) => {
   }
 
   return (
-    <NavLink to={item.path} className={`mb-1 block ${navItemClass}`}>
+    <NavLink to={item.path} className={`mb-2 block ${navItemClass}`}>
       {renderContent()}
     </NavLink>
   );
@@ -243,20 +243,20 @@ const Sidebar = ({ isCollapsed }) => {
   return (
     <aside
       className={`
-        fixed left-0 top-0 h-screen bg-background dark:bg-gray-900 border-r border-border dark:border-gray-800 flex flex-col transition-all duration-300 z-40
+        fixed left-0 top-0 h-screen bg-indigo-600 dark:bg-[#1A1D2F] border-none dark:border-[#23273D] flex flex-col transition-all duration-300 z-40
         ${isCollapsed ? 'w-20' : 'w-[280px]'}
       `}
     >
       {/* Logo */}
-      <div className="h-16 flex items-center px-6 border-b border-border dark:border-gray-800 shrink-0">
-        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
+      <div className="h-16 flex items-center px-6 border-white/10 dark:border-[#23273D] shrink-0">
+        <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm shrink-0">
           <span className="text-white font-bold text-lg">N</span>
         </div>
         {!isCollapsed && (
           <motion.span 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
-            className="ml-3 font-bold text-xl tracking-tight text-text-main dark:text-white"
+            className="ml-3 font-bold text-xl tracking-tight text-white dark:text-white"
           >
             NextSkool
           </motion.span>
@@ -276,8 +276,8 @@ const Sidebar = ({ isCollapsed }) => {
       </div>
 
       {/* Logout */}
-      <div className="p-4 border-t border-border dark:border-gray-800 shrink-0 bg-background dark:bg-gray-900">
-        <button className="flex items-center gap-3 px-3 py-2.5 w-full rounded-xl text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors duration-200">
+      <div className="p-4 border-white/10 dark:border-[#23273D] shrink-0 bg-indigo-600 dark:bg-[#1A1D2F]">
+        <button className="flex items-center gap-3 px-3 py-2.5 w-full rounded-xl text-indigo-100 hover:text-red-300 hover:bg-red-500/20 dark:bg-red-500/10 dark:hover:bg-red-50 dark:bg-red-500/100/10 transition-colors duration-200">
           <HiOutlineArrowLeftOnRectangle className="text-xl shrink-0" />
           {!isCollapsed && <span className="text-sm font-medium">Logout</span>}
         </button>

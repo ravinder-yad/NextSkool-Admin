@@ -38,9 +38,9 @@ const Dashboard = () => {
   const w = settings?.widgets || {};
 
   return (
-    <div className="w-full font-inter">
+    <div className="w-full max-w-[1600px] mx-auto font-inter p-2 sm:p-6">
       <div className="flex justify-end mb-4">
-        <Link to="/dashboard/settings" className="flex items-center gap-2 px-4 py-2 bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors border border-gray-200 dark:border-gray-600 text-sm font-medium">
+        <Link to="/dashboard/settings" className="flex items-center gap-2 px-4 py-2 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors border border-gray-100/50 dark:border-transparent text-sm font-medium">
           <HiOutlineCog6Tooth size={18} /> Customize Dashboard
         </Link>
       </div>

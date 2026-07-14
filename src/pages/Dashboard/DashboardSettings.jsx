@@ -50,10 +50,10 @@ const DashboardSettings = () => {
         </button>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+      <div className="bg-white dark:bg-[#111111] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] dark:shadow-none border border-gray-100/60 dark:border-white/10 overflow-hidden">
         <div className="p-6 space-y-6">
           {Object.entries(widgets).map(([key, value]) => (
-            <div key={key} className="flex items-center justify-between py-2 border-b border-gray-50 dark:border-gray-700 last:border-0">
+            <div key={key} className="flex items-center justify-between py-2 border-b border-gray-50 dark:border-white/10 last:border-0">
               <div>
                 <h3 className="text-gray-800 dark:text-gray-100 font-medium capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Show or hide the {key} section on the dashboard.</p>
@@ -65,7 +65,7 @@ const DashboardSettings = () => {
                   checked={value}
                   onChange={(e) => setWidgets({...widgets, [key]: e.target.checked})}
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-[#222222] peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-white/20 peer-checked:bg-blue-600"></div>
               </label>
             </div>
           ))}

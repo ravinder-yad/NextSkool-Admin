@@ -11,7 +11,7 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#F9FAFB] dark:bg-gray-950 overflow-hidden transition-colors duration-200">
+    <div className="flex h-screen bg-[#F4F7FE] dark:bg-[#1A1D2F] overflow-hidden transition-colors duration-200">
       <Sidebar isCollapsed={isCollapsed} />
       
       <div 

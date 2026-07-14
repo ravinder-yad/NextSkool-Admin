@@ -16,17 +16,17 @@ const KPICards = ({ kpis }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
       {cards.map((card, idx) => (
-        <div key={idx} className="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+        <div key={idx} className="bg-white dark:bg-[#23273D] dark:shadow-none p-5 rounded-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border-none dark:border-transparent hover:shadow-md dark:shadow-none transition-shadow">
           <div className="flex justify-between items-start mb-4">
-            <div className={`p-3 rounded-xl ${
-              card.color === 'blue' ? 'bg-blue-50 text-blue-600' :
-              card.color === 'purple' ? 'bg-purple-50 text-purple-600' :
+            <div className={`p-3 rounded-[20px] ${
+              card.color === 'blue' ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400' :
+              card.color === 'purple' ? 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400' :
               card.color === 'emerald' ? 'bg-emerald-50 text-emerald-600' :
-              card.color === 'orange' ? 'bg-orange-50 text-orange-600' :
+              card.color === 'orange' ? 'bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400' :
               card.color === 'indigo' ? 'bg-indigo-50 text-indigo-600' :
               card.color === 'teal' ? 'bg-teal-50 text-teal-600' :
-              card.color === 'cyan' ? 'bg-cyan-50 text-cyan-600' :
-              'bg-yellow-50 text-yellow-600'
+              card.color === 'cyan' ? 'bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400' :
+              'bg-yellow-50 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400'
             }`}>
               {React.cloneElement(card.icon, { size: 24 })}
             </div>
