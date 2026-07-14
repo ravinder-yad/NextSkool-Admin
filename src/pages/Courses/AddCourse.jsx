@@ -13,6 +13,8 @@ const AddCourse = () => {
     shortDescription: '', duration: '', level: 'All Levels', language: 'English'
   });
   
+  const [thumbnailPreview, setThumbnailPreview] = useState(null);
+  
   const [teachers, setTeachers] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -42,6 +44,14 @@ const AddCourse = () => {
   };
 
   const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
+
+  const handleThumbnailChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setThumbnailPreview(URL.createObjectURL(file));
+      // In a real scenario, you'd append this file to a FormData object during submit
+    }
+  };
 
   const SectionHeading = ({ icon: Icon, title, description }) => (
     <div className="mb-6 flex items-start gap-4">
@@ -237,12 +247,24 @@ const AddCourse = () => {
             description="Upload thumbnails and preview videos." 
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="border-2 border-dashed border-gray-200 dark:border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer group">
-              <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <HiOutlinePhoto className="text-3xl" />
-              </div>
-              <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">Upload Course Thumbnail</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">1280x720 (16:9) recommended. Max 2MB.</p>
+            <div className="relative border-2 border-dashed border-gray-200 dark:border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 dark:hover:bg-white/5 transition-colors cursor-pointer group overflow-hidden h-[250px]">
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={handleThumbnailChange}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
+              />
+              {thumbnailPreview ? (
+                <img src={thumbnailPreview} alt="Preview" className="absolute inset-0 w-full h-full object-cover rounded-xl" />
+              ) : (
+                <>
+                  <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <HiOutlinePhoto className="text-3xl" />
+                  </div>
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">Upload Course Thumbnail</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">1280x720 (16:9) recommended. Max 2MB.</p>
+                </>
+              )}
             </div>
             
             <div className="flex flex-col justify-center">

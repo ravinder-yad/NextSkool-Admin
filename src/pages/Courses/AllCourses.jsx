@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
-import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash, HiOutlineCheckBadge, HiOutlineEyeSlash } from 'react-icons/hi2';
+import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash, HiOutlineCheckBadge, HiOutlineEyeSlash, HiOutlineBookOpen } from 'react-icons/hi2';
 
 const AllCourses = () => {
   const [courses, setCourses] = useState([]);
@@ -13,8 +12,15 @@ const AllCourses = () => {
   const isFeaturedRoute = location.pathname.includes('/featured');
 
   let title = "All Courses";
-  if (isDraftRoute) title = "Draft Courses";
-  if (isFeaturedRoute) title = "Featured Courses";
+  let description = "Manage all courses available on your platform.";
+  if (isDraftRoute) {
+    title = "Draft Courses";
+    description = "Review and edit courses before publishing.";
+  }
+  if (isFeaturedRoute) {
+    title = "Featured Courses";
+    description = "Manage the highlighted courses on your storefront.";
+  }
 
   useEffect(() => {
     fetchCourses();
@@ -50,17 +56,23 @@ const AllCourses = () => {
   });
 
   return (
-    <div className="max-w-[1600px] mx-auto">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">Manage and monitor your {title.toLowerCase()}.</p>
+    <div className="max-w-[1600px] mx-auto w-full">
+      {/* Top Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-6 border-b border-gray-100 dark:border-white/5">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 flex items-center justify-center rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+            <HiOutlineBookOpen className="text-2xl" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-extrabold text-gray-800 dark:text-white tracking-tight">{title}</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{description}</p>
+          </div>
         </div>
         <Link 
           to="/courses/add" 
-          className="mt-4 sm:mt-0 flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-md transition-colors"
+          className="mt-4 sm:mt-0 flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-[0_4px_14px_0_rgb(79,70,229,0.39)] font-medium transition-all"
         >
-          <HiOutlinePlus className="text-xl" /> Add Course
+          <HiOutlinePlus className="text-lg" /> Add Course
         </Link>
       </div>
 
