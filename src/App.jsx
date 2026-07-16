@@ -30,6 +30,9 @@ import ManageSupportTeam from './pages/Contact/ManageSupportTeam';
 import ContactMessages from './pages/Contact/ContactMessages';
 import Newsletter from './pages/Contact/Newsletter';
 
+import AllStudents from './pages/Students/AllStudents';
+import AddStudent from './pages/Students/AddStudent';
+
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -89,6 +92,11 @@ function App() {
             <Route path="contact/team" element={<ManageSupportTeam />} />
             <Route path="contact/messages" element={<ContactMessages />} />
             <Route path="contact/newsletter" element={<Newsletter />} />
+
+                        {/* Students Management Routes */}
+            <Route path="students" element={<AllStudents />} />
+            <Route path="students/add" element={<AddStudent />} />
+            <Route path="students/edit/:id" element={<AddStudent />} />
 
             {/* Add more routes here as pages are created */}
             <Route path="*" element={
