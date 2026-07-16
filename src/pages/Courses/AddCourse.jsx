@@ -20,8 +20,11 @@ const AddCourse = () => {
 
   useEffect(() => {
     // Fetch dependencies
-    axios.get('http://localhost:5000/api/teachers').then(res => setTeachers(res.data.data)).catch(e => console.error(e));
-    axios.get('http://localhost:5000/api/categories').then(res => setCategories(res.data.data)).catch(e => console.error(e));
+    axios.get('http://localhost:5000/api/users').then(res => {
+      const allUsers = res.data.data || res.data;
+      setTeachers(allUsers.filter(u => u.role === 'instructor'));
+    }).catch(e => console.error(e));
+    axios.get('http://localhost:5000/api/categories').then(res => setCategories(res.data.data || res.data)).catch(e => console.error(e));
     
     if (isEditing) {
       // Logic to fetch course data for edit goes here

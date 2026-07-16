@@ -4,9 +4,9 @@ import { exploreService } from '../../services/exploreService';
 import toast from 'react-hot-toast';
 import { 
   HiOutlinePlus, 
-  HiOutlinePencilSquare, 
+  HiOutlinePencil, 
   HiOutlineTrash,
-  HiOutlineEye
+  HiOutlineBookOpen
 } from 'react-icons/hi2';
 
 const AllExplore = () => {
@@ -46,89 +46,98 @@ const AllExplore = () => {
   };
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">All Explore Items</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage all categories and topics in the mega menu</p>
+    <div className="max-w-[1600px] mx-auto w-full">
+      {/* Top Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-6 border-b border-gray-100 dark:border-white/5">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 flex items-center justify-center rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+            <HiOutlineBookOpen className="text-2xl" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-extrabold text-gray-800 dark:text-white tracking-tight">Explore Menu</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage mega menu categories, topics, and featured links.</p>
+          </div>
         </div>
         <Link 
           to="/explore/add" 
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          className="mt-4 sm:mt-0 flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-[0_4px_14px_0_rgb(79,70,229,0.39)] font-medium transition-all"
         >
-          <HiOutlinePlus size={20} /> Add New
+          <HiOutlinePlus className="text-lg" /> Add Explore Item
         </Link>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-gray-50 dark:bg-gray-700/50 border-b border-gray-100 dark:border-gray-700 text-sm font-semibold text-gray-600 dark:text-gray-300">
-                <th className="p-4">Image/Icon</th>
-                <th className="p-4">Title</th>
-                <th className="p-4">Category</th>
-                <th className="p-4 text-center">Courses</th>
-                <th className="p-4 text-center">Featured</th>
-                <th className="p-4 text-center">Status</th>
-                <th className="p-4 text-center">Order</th>
-                <th className="p-4 text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                <tr>
-                  <td colSpan="8" className="p-8 text-center text-gray-500">Loading...</td>
+      <div className="bg-white dark:bg-[#23273D] rounded-2xl shadow-sm border border-gray-100/50 dark:border-transparent overflow-hidden">
+        {loading ? (
+          <div className="p-10 flex justify-center">
+            <div className="w-8 h-8 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-gray-100 dark:border-white/10 text-gray-500 dark:text-gray-400 text-sm font-semibold uppercase tracking-wider bg-gray-50/50 dark:bg-black/10">
+                  <th className="p-4 pl-6">Title</th>
+                  <th className="p-4">Category</th>
+                  <th className="p-4 text-center">Courses</th>
+                  <th className="p-4 text-center">Featured</th>
+                  <th className="p-4 text-center">Status</th>
+                  <th className="p-4 text-center">Actions</th>
                 </tr>
-              ) : explores.length === 0 ? (
-                <tr>
-                  <td colSpan="8" className="p-8 text-center text-gray-500">No explore items found.</td>
-                </tr>
-              ) : (
-                explores.map((item) => (
-                  <tr key={item._id} className="border-b border-gray-50 dark:border-gray-700/50 hover:bg-gray-50/50 dark:hover:bg-gray-700/20 transition-colors">
-                    <td className="p-4">
-                      {item.image ? (
-                        <img src={`http://localhost:5000${item.image}`} alt={item.title} className="w-12 h-12 rounded-lg object-cover" />
-                      ) : (
-                        <div className="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-500">
-                          {item.icon}
-                        </div>
-                      )}
-                    </td>
-                    <td className="p-4">
-                      <div className="font-bold text-gray-900 dark:text-white">{item.title}</div>
-                      <div className="text-xs text-gray-500">/{item.slug}</div>
-                    </td>
-                    <td className="p-4 text-gray-600 dark:text-gray-300">{item.category}</td>
-                    <td className="p-4 text-center font-medium text-gray-700 dark:text-gray-300">{item.courseCount}</td>
-                    <td className="p-4 text-center">
-                      <span className={`px-2 py-1 rounded-md text-xs font-bold ${item.featured ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-600'}`}>
-                        {item.featured ? 'Yes' : 'No'}
-                      </span>
-                    </td>
-                    <td className="p-4 text-center">
-                      <span className={`px-2 py-1 rounded-md text-xs font-bold ${item.status === 'Active' ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}`}>
-                        {item.status}
-                      </span>
-                    </td>
-                    <td className="p-4 text-center text-gray-600 dark:text-gray-300 font-medium">{item.displayOrder}</td>
-                    <td className="p-4 text-center">
-                      <div className="flex items-center justify-center gap-2">
-                        <Link to={`/explore/edit/${item._id}`} className="p-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 transition-colors">
-                          <HiOutlinePencilSquare size={18} />
-                        </Link>
-                        <button onClick={() => handleDelete(item._id)} className="p-1.5 bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 rounded-lg hover:bg-rose-100 transition-colors">
-                          <HiOutlineTrash size={18} />
-                        </button>
-                      </div>
+              </thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-white/10">
+                {explores.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" className="p-8 text-center text-gray-500 dark:text-gray-400">
+                      No explore items found.
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                ) : (
+                  explores.map((item) => (
+                    <tr key={item._id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors">
+                      <td className="p-4 pl-6">
+                        <div className="flex items-center gap-4">
+                          {item.image ? (
+                            <img src={`http://localhost:5000${item.image}`} alt={item.title} className="w-10 h-10 rounded-lg object-cover bg-gray-100 dark:bg-gray-800" />
+                          ) : (
+                            <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center text-indigo-500">
+                              <HiOutlineBookOpen className="text-xl" />
+                            </div>
+                          )}
+                          <div>
+                            <div className="font-bold text-gray-800 dark:text-white">{item.title}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">/{item.slug}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-4 text-gray-600 dark:text-gray-300 font-medium">{item.category}</td>
+                      <td className="p-4 text-center text-gray-600 dark:text-gray-300 font-medium">{item.courseCount}</td>
+                      <td className="p-4 text-center">
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${item.featured ? 'bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400' : 'bg-gray-100 text-gray-600 dark:bg-white/5 dark:text-gray-400'}`}>
+                          {item.featured ? 'Yes' : 'No'}
+                        </span>
+                      </td>
+                      <td className="p-4 text-center">
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${item.status === 'Active' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400' : 'bg-rose-100 text-rose-700 dark:bg-rose-500/10 dark:text-rose-400'}`}>
+                          {item.status}
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <div className="flex items-center justify-center gap-3">
+                          <Link to={`/explore/edit/${item._id}`} className="p-2 text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-lg transition-colors">
+                            <HiOutlinePencil className="text-lg" />
+                          </Link>
+                          <button onClick={() => handleDelete(item._id)} className="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+                            <HiOutlineTrash className="text-lg" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
